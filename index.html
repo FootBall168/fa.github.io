@@ -5,14 +5,16 @@
     <link rel="icon" href="./bitbug_favicon.ico" type="image/x-icon">
     <title>红单圣殿</title>
     <style>
-        html{ background: url(./bg.jpeg) center center no-repeat; }
-        table { border-collapse: collapse;width: 800px;}
+        html{ background: url(./bg.jpeg) center center no-repeat;background-color: #7db822;}
+        /* -webkit-filter: blur(1px);filter: blur(1px); */
+        table { border-collapse: collapse;width: 800px;font-size: 22px;}
         table,table tr th, table tr td { border:1px solid #000000; }
     </style>
+
 </head>
 <body>
-<table align="center">
-    <caption>万元单推荐</caption>
+<table align="center" id="table">
+    <!-- <caption>万元单推荐</caption>
     <tr>
         <th align="center" valign="middle">日期</th>
         <th align="center" valign="middle">赛事</th>
@@ -42,6 +44,67 @@
     </tr>
     <tr>
         <td colspan="8" align="center" valign="middle">3</td>
-    </tr>
+    </tr> -->
 </table>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    window.onload= function(){
+        let betData = [
+            {data:'5月1日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月2日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月3日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月4日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月5日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月6日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月7日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月8日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月9日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月10日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月11日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月12日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月13日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月14日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月15日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月16日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月17日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+            {data:'5月18日',game:'',lookAt:'1',spRate:'1',result:'1',dec:'1',betNum:'1',ceilMoney:'1',allMoney:'1'},
+        ]
+        let _html = "<caption>万元单推荐</caption>";
+        _html+= "<tr>"
+            _html+= '<th align="center" valign="middle">日期</th>'
+            _html+= '<th align="center" valign="middle">赛事</th>'
+            _html+= '<th align="center" valign="middle">推荐</th>'
+            _html+= '<th align="center" valign="middle">赔率</th>'
+            _html+= '<th align="center" valign="middle">赛果</th>'
+            _html+= '<th align="center" valign="middle">红/黑</th>'
+            _html+= '<th align="center" valign="middle">下注金额</th>'
+            _html+= '<th align="center" valign="middle">单注利润</th>'
+            _html+= '<th align="center" valign="middle">累计利润</th>'
+        _html+= '</tr>'
+
+        for(let i = 0;i<betData.length;i++){
+            _html+= '<tr>'
+                _html+= '<td align="center" valign="middle">'+betData[i].data+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].game+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].lookAt+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].spRate+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].result+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].dec+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].betNum+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].ceilMoney+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].allMoney+'</td>'
+            _html+= '</tr>'
+        }
+
+        _html+= '<tr>'
+            _html+= '<th rowspan="2" align="center" valign="middle">1</th>'
+            _html+= '<td colspan="8" align="center" valign="middle">2</td>'
+        _html+= '</tr>'
+        _html+= '<tr>'
+            _html+= '<td colspan="8" align="center" valign="middle">3</td>'
+        _html+= '</tr>'
+        $("#table").append(_html);
+    }
+</script>
 </body>
+</html>
