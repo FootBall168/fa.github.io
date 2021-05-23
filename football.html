@@ -1,0 +1,145 @@
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+    <meta name="viewport" content="width=device-width,height=device-height,inital-scale=1.0,maximum-scale=1.0,user-scalable=no"> 
+    <link rel="icon" href="./bitbug_favicon.ico" type="image/x-icon">
+    <title>红单圣殿</title>
+    <style>
+        html{ background:  no-repeat;background-color: #b8b322;}
+        /* -webkit-filter: blur(1px);filter: blur(1px); */
+        table { border-collapse: collapse;width: 800px;font-size: 22px;}
+        table,table tr th, table tr td { border:1px solid #000000; }
+        #qrCode{
+            position: absolute;
+            left: 0;
+            top: 50%;
+        }
+        .sideBar {
+            position:fixed;
+            right:10px;
+            top:200px;
+            background-color:#ffffff;
+            border:#eea236 solid 1px;
+            transition:left 0.5s;
+            border:solid 1px red;
+        }
+        .redBet{
+            color: red;
+        }
+        .blackBet{
+            color: black;
+        }
+    </style>
+
+</head>
+<body>
+<table align="center" id="table">
+    <!-- <caption>万元单推荐</caption>
+    <tr>
+        <th align="center" valign="middle">日期</th>
+        <th align="center" valign="middle">赛事</th>
+        <th align="center" valign="middle">推荐</th>
+        <th align="center" valign="middle">赔率</th>
+        <th align="center" valign="middle">赛果</th>
+        <th align="center" valign="middle">红/黑</th>
+        <th align="center" valign="middle">下注金额</th>
+        <th align="center" valign="middle">单注利润</th>
+        <th align="center" valign="middle">累计利润</th>
+    </tr>
+    <tr>
+        <td align="center" valign="middle">1</td>
+        <td align="center" valign="middle">89</td>
+        <td align="center" valign="middle">92</td>
+        <td align="center" valign="middle">87</td>
+        <td align="center" valign="middle">1</td>
+        <td align="center" valign="middle">89</td>
+        <td align="center" valign="middle">92</td>
+        <td align="center" valign="middle">87</td>
+        <td align="center" valign="middle">1</td>
+    </tr>
+
+    <tr>
+        <th rowspan="2" align="center" valign="middle">1</th>
+        <td colspan="8" align="center" valign="middle">2</td>
+    </tr>
+    <tr>
+        <td colspan="8" align="center" valign="middle">3</td>
+    </tr> -->
+</table>
+<!-- <img src="./qrCode.png" width="80" height="80" id="" class="sideBar"> -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script type="text/javascript">
+    window.onload= function(){
+        let betData = [ 
+            {data:'5月1日',game:'荷甲 维迪斯 vs 泽沃勒',lookAt:'1',spRate:'1',result:'2 - 1',dec:'主 -0.75',trueOrFalse:'红', class : 'redBet'}, 
+            {data:'5月2日',game:'俄超 泽尼特 vs 莫火车头',lookAt:'1',spRate:'1',result:'6 - 1',dec:'主 -0.75',trueOrFalse:'红', class : 'redBet'}, 
+            {data:'5月3日',game:'法乙 格勒诺布 vs 克莱蒙',lookAt:'1',spRate:'1',result:'1 - 2',dec:'客 -0.5',trueOrFalse:'红', class : 'redBet'}, 
+            {data:'5月4日',game:'欧冠 曼城 vs 巴黎',lookAt:'1',spRate:'1',result:'2 - 0',dec:'主 -0.5',trueOrFalse:'红', class : 'redBet'}, 
+            
+            {data:'5月5日',game:'欧冠 切尔西 vs 皇马',lookAt:'1',spRate:'1',result:'2 - 0',dec:'客 +0.25',trueOrFalse:'黑', class : 'blackBet'}, 
+            {data:'5月6日',game:'葡超 布兰妮 vs 波尔蒂芒',lookAt:'1',spRate:'1',result:'1 - 0',dec:'客 +0',trueOrFalse:'黑', class : 'blackBet'}, 
+
+            {data:'5月7日',game:'荷乙 前进之鹰 vs 奈梅亨',lookAt:'1',spRate:'1',result:'2 - 1',dec:'胜主 -0.5',trueOrFalse:'红', class : 'redBet'}, 
+            {data:'5月8日',game:'俄超 莫火车头 vs 莫迪纳摩',lookAt:'1',spRate:'1',result:'0 - 0',dec:'客 +0.25',trueOrFalse:'红', class : 'redBet'}, 
+
+            {data:'5月9日',game:'日乙 新泻天鹅 vs 松本山雅',lookAt:'1',spRate:'1',result:'0 - 0',dec:'主 -0.5',trueOrFalse:'黑', class : 'blackBet'}, 
+
+            {data:'5月9日',game:'荷甲 费耶诺德 vs 阿贾克斯',lookAt:'1',spRate:'1',result:'0 - 3',dec:'负客 -0.75',trueOrFalse:'红', class : 'redBet'}, 
+            {data:'5月10日',game:'德乙 汉堡 vs 诺伦堡',lookAt:'1',spRate:'1',result:'5 - 2',dec:'主 -1',trueOrFalse:'红', class : 'redBet'}, 
+            {data:'5月11日',game:'西甲 埃尔切 vs 阿拉维斯',lookAt:'1',spRate:'1',result:'0 - 2',dec:'客 +0',trueOrFalse:'红', class : 'redBet'},
+
+            {data:'5月12日',game:'西甲 塞尔塔 vs 赫塔菲',lookAt:'1',spRate:'1',result:'1 - 0',dec:'客 +0.5',trueOrFalse:'黑', class : 'blackBet'}, 
+            {data:'5月13日',game:'西甲 巴利亚多 vs 比利亚雷',lookAt:'1',spRate:'1',result:'0 - 2',dec:'让胜主 +0.25',trueOrFalse:'黑', class : 'blackBet'}, 
+            {data:'5月14日',game:'英超 纽卡斯尔 vs 曼城',lookAt:'1',spRate:'1',result:'3 - 4',dec:'客 -1.75',trueOrFalse:'黑', class : 'blackBet'}, 
+
+            {data:'5月15日',game:'日乙 松本山雅 vs 金泽',lookAt:'1',spRate:'1',result:'0 - 0',dec:'客 +0.25',trueOrFalse:'红', class : 'redBet'}, 
+            {data:'5月15日',game:'英足总 切尔西 vs 莱切斯特城',lookAt:'1',spRate:'1',result:'0 - 1',dec:'主 -0.5',trueOrFalse:'黑', class : 'blackBet'}, 
+            {data:'5月16日',game:'韩职 济州联 vs 大邱FC',lookAt:'1',spRate:'1',result:'1 - 2',dec:'客 +0.5',trueOrFalse:'红', class : 'redBet'},
+            {data:'5月16日',game:'德甲 莱比锡红牛 vs 沃尔夫斯堡',lookAt:'1',spRate:'1',result:'2 - 2',dec:'客 +0.5',trueOrFalse:'红', class : 'redBet'}, 
+            {data:'5月17日',game:'瑞超 瓦尔贝里 vs 北雪平',lookAt:'1',spRate:'1',result:'2 - 1',dec:'主 +0.5',trueOrFalse:'红', class : 'redBet'}, 
+            {data:'5月18日',game:'英超 切尔西 vs 莱切斯特城',lookAt:'1',spRate:'1',result:'2 - 1',dec:'主 -0.5',trueOrFalse:'红', class : 'redBet'}, 
+            {data:'5月19日',game:'韩职 水原三星 vs 大邱FC',lookAt:'1',spRate:'1',result:'1 - 1',dec:'客 +0.25',trueOrFalse:'红', class : 'redBet'},
+
+            {data:'5月19日',game:'英超 伯恩利 vs 阿森纳',lookAt:'1',spRate:'1',result:'1 - 3',dec:'客 +0',trueOrFalse:'红', class : 'redBet'},
+            {data:'5月20日',game:'瑞超 马尔默 vs 埃尔夫斯堡',lookAt:'1',spRate:'1',result:'2 - 1',dec:'主 -0.75',trueOrFalse:'红', class : 'redBet'},
+            {data:'5月21日',game:'法乙 图卢兹 vs 格勒诺布',lookAt:'1',spRate:'1',result:'3 - 0',dec:'主 -0.5',trueOrFalse:'红', class : 'redBet'},
+            {data:'5月22日',game:'日职联 福冈黄蜂 vs 湘南海洋',lookAt:'1',spRate:'1',result:'2 - 1',dec:'主 -0.25',trueOrFalse:'红', class : 'redBet'},
+            {data:'5月22日',game:'西甲 奥萨苏纳 vs 皇家社会',lookAt:'1',spRate:'1',result:'0 - 1',dec:'客 -0.75',trueOrFalse:'红', class : 'redBet'},
+            {data:'5月22日',game:'西甲 埃瓦尔 vs 巴萨罗那',lookAt:'1',spRate:'1',result:'0 - 1',dec:'客 -0.75',trueOrFalse:'红', class : 'redBet'},
+            {data:'5月22日',game:'NBA 热火 vs 雄鹿',lookAt:'1',spRate:'1',result:'107 - 109',dec:'小分227.5',trueOrFalse:'红', class : 'redBet'},
+        ]
+        betData = betData.reverse();
+        let _html = "<caption>红芯单</caption>";
+        _html+= '<tr>'
+            _html+= '<th rowspan="2" align="center" valign="middle">更多向右</th>'
+            _html+= '<td colspan="4" align="center" valign="middle">企鹅：<span style="color:blue;">977902776</span> 备注：<span style="color:yellow">458</span></td>'
+        _html+= '</tr>'
+        _html+= '<tr>'
+            _html+= '<td colspan="5" align="center" valign="middle">请支持中国体育彩票</td>'
+        _html+= '</tr>'
+
+        _html+= "<tr>"
+            _html+= '<th align="center" valign="middle">日期</th>'
+            _html+= '<th align="center" valign="middle">赛事</th>'
+            _html+= '<th align="center" valign="middle">推荐</th>'
+            // _html+= '<th align="center" valign="middle">赔率</th>'
+            _html+= '<th align="center" valign="middle">赛果</th>'
+            _html+= '<th align="center" valign="middle">红/黑</th>'
+        _html+= '</tr>'
+
+        for(let i = 0;i<betData.length;i++){
+            _html+= '<tr class='+betData[i].class+'>'
+                _html+= '<td align="center" valign="middle">'+betData[i].data+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].game+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].dec+'</td>'
+                // _html+= '<td align="center" valign="middle">'+betData[i].spRate+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].result+'</td>'
+                _html+= '<td align="center" valign="middle">'+betData[i].trueOrFalse+'</td>'
+            _html+= '</tr>'
+        }
+
+        $("#table").append(_html);
+    }
+</script>
+</body>
+</html>
